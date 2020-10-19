@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Amicable Numbers</title>
-    </head>
-    <body>
-        <form>
-            <input type="text" id="num1" name="num1"><br>
-            <input type="text" id="num2" name="num2"><br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+<head>
+    <title>Amicable Numbers</title>
+    <script language="javascript">
+        window.onload=function()
+        {
+            document.getElementById("amicable?").onclick =
+                function() 
+                {
+                    num1 = document.form1.num1.value;
+                    num2 = document.form1.num2.value;
+                    nums_display = "Nums: " + num1 + ", " + num2 + "<br>";
+                
+                    document.getElementById("amicable?").innerHTML = result;
+                }
+                
+            
+        }
+            
+        </script>
+</head>
+<body>
+    <form name="form1">
+        <input type="text" id="num1" name="num1"><br>
+        <input type="text" id="num2" name="num2"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="nums-div"></div>
+</body>
 
 </html>
