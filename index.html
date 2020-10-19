@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Amicable Numbers</title>
 <script language="javascript">
+    
     window.onload=function()
     {
         document.getElementById("submit").onclick =
@@ -14,21 +15,97 @@
                 var nums_display = "Nums: " + num1 + ", " + num2 + "<br>";
             
                 document.getElementById("nums-div").innerHTML = nums_display;
+                if (isAmicable(num1, num2)) {
+                    document.getElementById("result-div").innerHTML = "the numbers are amicable<br />";
+                } else {
+                    document.getElementById("result-div").innerHTML = "the numbers are not amicable<br />";
+                }
             }
     }
 
-    function isFactor(num poss_factor)
-    
+    // isAmicable evaluates whether num1 and num2 are amicable
+    function isAmicable(num1, num2)
+    {
+        var sum1 = addArray(getFactors(num1));
+        var sum2 = addArray(getFactors(num2));
+        if ((sum1 == num2) && (sum2 == num1)) {
+            return true;
+        } return false;
+    }
+
+    // isFactor evaluates whether poss_factor is a factor of num
+    function isFactor(num, poss_factor)
+    {
+        if (num % poss_factor == 0) {
+            return true;
+        } return false;
+    }
+    // testing:
+    // document.write("should be true: ", isFactor(4, 2), "<br />");
+    // document.write("should be false: ", isFactor(4, 99));
+
+    // showArray displays all of array arr's elements in arr-div
+    function showArray(arr)
+    {
+        result = "";
+        for (i = 0; i < arr.length; i++) {
+            result += arr[i] + " ";
+        }
+        result += "<br />";
+        document.getElementById("arr-div").innerHTML = result;
+    }
+    // testing:
+    // window.onload=function()
+    // {
+    //     var arr = [1, 2, 3, 4, 5];
+    //     showArray(arr);
+    // }
+
+    // addArray sums all the elements of an array
+    function addArray(arr)
+    {
+        result = 0;
+        for (i = 0; i < arr.length; i++) {
+            result += arr[i];
+        }
+        return result;
+    }
+    // testing:
+    // var arr = [1, 2, 3];
+    // document.write("should be 6: ", addArray(arr));
+
+    // getFactors gets all possible factors of num
+    function getFactors(num)
+    {
+        var factors = [];
+        if (num == 1) {
+            factors[0] = 1;
+        }
+        for (i = 1; i <= (num/2); i++) {
+            if (num % i == 0) {
+                factors.push(i);
+            }
+        }
+        return factors;
+    }
+    // testing:
+    // window.onload=function()
+    // {
+    //     showArray(getFactors(16));
+    // }
+
 </script>
 </head>
 <body>
-    <h1>amicable numbers df</h1>
+    <h1>amicable numbers</h1>
     <form name="form1">
         Num 1: <input type="text" id="num1" name="num1"><br>
         Num 2: <input type="text" id="num2" name="num2"><br>
         <input type="button" id="submit" value="Submit">
     </form>
     <div id="nums-div"></div>
+    <div id="arr-div"></div>
+    <div id="result-div"></div>
 </body>
 
 </html>
